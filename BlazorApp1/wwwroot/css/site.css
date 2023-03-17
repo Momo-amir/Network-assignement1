@@ -1,0 +1,263 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Typography, colors etc */
+    --ff-primary: "Hellix", sans-serif;
+    --ff-seondary: "Hellix", sans-serif;
+    --fw-reg: 300;
+    --fw-bold: 900;
+    --clr-light: #E5E5E5;
+    --clr-dark: #111111;
+    --clr-accent2: #FFA12A;
+    --clr-accent: #FF5968;
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1 rem;
+    --bs: 0.25em 0.25em o.75em rgba(0, 0, 0, 0.25), 0.125em 00.125em 0.25em rgba(0, 0, 0, 0.25);
+}
+
+header {
+    display: flex;
+    padding: 1em;
+}
+
+@media (min-width: 800px) {
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-body: 1.125rem;
+    }
+}
+
+strong {
+    font-weight: var(--fw-bold);
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: #111111;
+}
+
+header {
+    background: var(--clr-dark);
+}
+
+body {
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    margin: 0;
+    font-family: var(--ff-primary);
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+:focus {
+    outline: 3px solid var(--clr-light);
+    outline-offset: 3px;
+}
+
+.nav {
+    position: fixed;
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transform: translateX(100%);
+    transition: transform 250ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.nav__list {
+    list-style: none;
+    color: var(--clr-light);
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__link {
+    color: var(--clr-light);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-h2);
+    text-decoration: none;
+}
+
+    .nav__link:hover {
+        color: var(--clr-accent);
+    }
+
+.nav-toggle {
+    padding: 0.5em;
+    background: transparent;
+    border: 1;
+    border-color: var(--clr-light);
+    cursor: pointer;
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    z-index: 1000;
+}
+
+    .nav-toggle :hover {
+        color: var(--clr-accent2);
+    }
+
+.nav-open .nav {
+    transform: translateX(0);
+}
+
+.nav-open .nav-toggle {
+    position: fixed;
+}
+
+/*Hamburger menu */
+.nav-open .hamburger {
+    transform: rotate(0.625turn);
+}
+
+    .nav-open .hamburger::after {
+        opacity: 0;
+    }
+
+    .nav-open .hamburger::before {
+        transform: rotate(90deg) translateX(-3px);
+    }
+
+.hamburger {
+    display: block;
+    position: relative;
+}
+
+    .hamburger,
+    .hamburger::before,
+    .hamburger::after {
+        background: var(--clr-light);
+        width: 2em;
+        height: 3px;
+        border-radius: 1em;
+        transition: transform 250ms ease-in-out;
+    }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+
+        .hamburger::before {
+            top: 6px;
+        }
+
+        .hamburger::after {
+            bottom: 6px;
+        }
+
+.intro {
+    display: grid;
+    place-items: center;
+    margin-bottom: 2rem;
+    padding: 4rem;
+}
+
+.my-services {
+    text-align: center;
+}
+
+    .my-services .services {
+        display: flex;
+        padding-top: 4rem;
+        margin: auto;
+    }
+
+        .my-services .services .service {
+            max-width: 33.3%;
+            padding: 2rem;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+
+.js {
+    color: #f7df1e;
+    font-weight: bold;
+}
+
+.react {
+    color: #61DBFB;
+    font-weight: bold;
+}
+
+.vue {
+    color: #42b883;
+    font-weight: bold;
+}
+
+.tail {
+    color: #61DBFB;
+    font-weight: bold;
+}
+
+.sass {
+    color: #cc6699;
+    font-weight: bold;
+}
+
+.next {
+    font-weight: bold;
+}
+
+.btn {
+    display: grid;
+
+    padding: 0.5em 2.5em;
+    margin: 3rem auto 7rem auto;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: var(--fw-bold);
+    transition: transform 200ms ease-in-out;
+}
+
+    .btn:hover {
+        transform: scale(1.1);
+        background-color: var(--clr-light)
+    }
+
+    th{
+        color:white;
+    }
+
+
+
+.container-table {
+padding: 2rem;
+    margin: auto;
+
+}
+.table--sql {
+    color: #fff !important;
+    
+    margin: auto;
+
+}

@@ -1,0 +1,167 @@
+﻿@using BlazorApp1.Data
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<body>
+
+  <header>
+      <div class="logo">
+        <img src="img/logo1.png" alt="" />
+      </div> <!--NAVIGATION AND HAMBURGER-->
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+
+            <button title="Navigation menu" class="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light  fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Brand</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Insert</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#work">Footer</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <!-- Intro -->
+    <section class="intro" id="home">
+      <h1 class="section__title section__title--intro">
+         <strong>Network & SQL</strong> Test site 
+      </h1>
+      <p class="section__subtitle section__subtitle--intro">Yes we extra</p>
+      
+    </section>
+    <!-- My services -->
+    <section class="my-services" id="services">
+    
+      <div class="services">
+        <div class="service">
+          <h3>What</h3>
+          <p>
+          This site was made to show how we can add show and delete stuff from an SQL table
+          </p>
+        </div>
+        <!-- / service -->
+
+        <div class="service">
+          <h3> Why </h3>
+          <p>
+                By using Blazor we have succesfully created a link between our code and a database, this way we can simulate how in a real world the back-end would work with the front-end
+            </p>
+        </div>
+        <!-- / service -->
+
+        <div class="service">
+            <h3>
+                How 
+            </h3>
+          <p>
+            The power of the internet, and some cool ass logic  :^) 
+          </p>
+        </div>
+        <!-- / service -->
+      </div>
+      <!-- / services -->
+      <a href="#work" class="btn">Click me</a>
+    </section>
+
+   <button @onclick="ReadFromSql" class="btn">Read From Sql</button>
+
+    @if (memeList == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="container-table">
+        <table class="table--sql">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>URL</th>
+                    <th>Image</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var meme in memeList)
+                {
+                    <tr>
+                        <td>@meme.Id</td>
+                        <td>@meme.MemeName</td>
+                        <td><p style="width: 200px">@meme.Url</p></td>
+                        <td><img style="width: 300px; height: auto" src=@meme.Url /></td>
+                        <td><button class= "btn" @onclick="() => DeleteFromSql(meme.Id)">Delete</button></td>
+                    </tr>
+                }
+
+                <tr class="input-container">
+                   
+                    <td><input @bind="meme.MemeName" /></td>
+                        <td><input @bind="meme.Url" /></td>
+                        <td><button @onclick="AddToSql" class="btn">Add</button></td>
+                    <td></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    }
+
+
+
+    @code {
+        Meme meme = new();
+        List<Meme> memeList = Sql.Read();
+        void ReadFromSql() { memeList = Sql.Read(); }
+        void AddToSql()
+        {
+            Sql.Create(meme);
+            memeList = Sql.Read();
+        }
+        void DeleteFromSql(int id)
+        {
+            Sql.Delete(id);
+            memeList = Sql.Read();
+        }
+    }
+
+
+    <section>
+      <div>
+        <a href="#home" class="btn">Tilbage til toppen</a>
+      </div>
+    </section>
+    <footer class="footer">
+      <a href="mailto:amirmomo8@gmail.com" class="footer__link">
+        Amirmomo8@gmail.com
+      </a>
+     
+    </footer>
+
+</body>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
